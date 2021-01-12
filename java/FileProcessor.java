@@ -4,11 +4,12 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 public class FileProcessor {
-    private final List<String> allWords;
-    private final List<String> swearWords;
+    private List<String> allWords;
+    private List<String> swearWords;
     private final List<String> withoutSwearWords;
     private int quantityOfSwearWords;
     private String highFrequencyWord;
+    private static final int WORD_SIZE = 3;
 
     public FileProcessor(String filePath, String filePathSwearWords) {
         allWords = getAllWords(filePath);
@@ -18,7 +19,7 @@ public class FileProcessor {
     }
 
     public List<String> getSwearWords(String filePathSwearWords) {
-        List<String> swearWords = getAllWords(filePathSwearWords);
+        swearWords = getAllWords(filePathSwearWords);
         return swearWords;
     }
 
@@ -53,7 +54,7 @@ public class FileProcessor {
     public String[] getExcludedWords() {
         List<String> excludedWords = new ArrayList<>();
         for (String word : allWords) {
-            if (word.length() < 3 || swearWords.contains(word)) {
+            if (word.length() < WORD_SIZE || swearWords.contains(word)) {
                 excludedWords.add(word);
                 if (swearWords.contains(word)) {
                     quantityOfSwearWords++;
