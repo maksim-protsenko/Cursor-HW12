@@ -18,12 +18,12 @@ public class FileProcessor {
         withoutSwearWords.addAll(allWords);
     }
 
-    public List<String> getSwearWords(String filePathSwearWords) {
+    private List<String> getSwearWords(String filePathSwearWords) {
         swearWords = getAllWords(filePathSwearWords);
         return swearWords;
     }
 
-    public List<String> getAllWords(String filePath) {
+    private List<String> getAllWords(String filePath) {
         List<String> allWords = new ArrayList<>();
         String temp;
         try {
